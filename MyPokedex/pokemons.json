@@ -1,0 +1,173 @@
+[
+    {
+        "name": "Bulbasaur",
+        "type":
+        [
+            "Grass",
+            "Poison"
+        ],
+        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"
+    },
+    {
+        "name": "Charmander",
+        "type":
+        [
+            "Fire"
+        ],
+        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png"
+    },
+    {
+        "name": "Squirtle",
+        "type":
+        [
+            "Water"
+        ],
+        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png"
+    },
+    {
+        "name": "Pikachu",
+        "type":
+        [
+            "Electric"
+        ],
+        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"
+    },
+    {
+        "name": "Jigglypuff",
+        "type":
+        [
+            "Normal",
+            "Fairy"
+        ],
+        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/39.png"
+    },
+    {
+        "name": "Eevee",
+        "type":
+        [
+            "Normal"
+        ],
+        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/133.png"
+    },
+    {
+        "name": "Chikorita",
+        "type":
+        [
+            "Grass"
+        ],
+        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/152.png"
+    },
+    {
+        "name": "Cyndaquil",
+        "type":
+        [
+            "Fire"
+        ],
+        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/155.png"
+    },
+    {
+        "name": "Totodile",
+        "type":
+        [
+            "Water"
+        ],
+        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/158.png"
+    },
+    {
+        "name": "Treecko",
+        "type":
+        [
+            "Grass"
+        ],
+        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/252.png"
+    },
+    {
+        "name": "Torchic",
+        "type":
+        [
+            "Fire"
+        ],
+        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/255.png"
+    },
+    {
+        "name": "Mudkip",
+        "type":
+        [
+            "Water"
+        ],
+        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/258.png"
+    },
+    {
+        "name": "Piplup",
+        "type":
+        [
+            "Water"
+        ],
+        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/393.png"
+    },
+    {
+        "name": "Chimchar",
+        "type":
+        [
+            "Fire"
+        ],
+        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/390.png"
+    },
+    {
+        "name": "Turtwig",
+        "type":
+        [
+            "Grass"
+        ],
+        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/387.png"
+    },
+    {
+        "name": "Snivy",
+        "type":
+        [
+            "Grass"
+        ],
+        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/495.png"
+    },
+    {
+        "name": "Tepig",
+        "type":
+        [
+            "Fire"
+        ],
+        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/498.png"
+    },
+    {
+        "name": "Oshawott",
+        "type":
+        [
+            "Water"
+        ],
+        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/501.png"
+    },
+    {
+        "name": "Chespin",
+        "type":
+        [
+            "Grass"
+        ],
+        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/650.png"
+    },
+    {
+        "name": "Fennekin",
+        "type":
+        [
+            "Fire"
+        ],
+        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/653.png"
+    },
+    {
+        "name": "Froakie",
+        "type":
+        [
+            "Water"
+        ],
+        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/656.png"
+    }
+]
+
