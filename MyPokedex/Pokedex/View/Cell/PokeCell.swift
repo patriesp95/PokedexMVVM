@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PokeCell: View {
-    let pokemon: Pokemon
+    let pokemon: PokemonUi
     
     var body: some View {
         HStack {
@@ -38,5 +38,5 @@ struct PokeCell: View {
 }
 
 #Preview {
-    PokeCell(pokemon: Pokemon.test)
+    PokeCell(pokemon: PokemonUi.test)
 }

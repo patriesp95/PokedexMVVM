@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 final class PokemonDetailViewModel: ObservableObject {
-    private let repository: PokemonDataRepository
+    private let repository: PokemonRepositoryProtocol
     
     init(repository: PokemonDataRepository){
         self.repository = repository

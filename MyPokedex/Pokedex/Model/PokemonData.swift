@@ -1,5 +1,5 @@
 //
-//  DataModel.swift
+//  PokemonData.swift
 //  MySwiftUIPokedex
 //
 //  Created by patricia.martinez on 2/1/25.
@@ -22,4 +22,3 @@ final class PokemonData: Identifiable {
         self.isFavorite = isFavorite
     }
 }
-

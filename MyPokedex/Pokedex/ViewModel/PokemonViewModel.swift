@@ -9,26 +9,28 @@ import SwiftUI
 import SwiftData
 
 final class PokemonViewModel: ObservableObject {
-    private let repository: PokemonDataRepository
+    private let repository: PokemonRepositoryProtocol & PokemonFavoritedRepositoryProtocol
     
-    @Published var pokemons: [Pokemon] = []
+    @Published var pokemons: [PokemonUi] = []
     
     init(repository: PokemonDataRepository){
         self.repository = repository
         do {
-            self.pokemons = try self.repository.loadData()
+            self.pokemons = try loadPokemons()
         } catch {
             print(error)
         }
     }
     
-    @MainActor func insertPokemon(pokemon: Pokemon){
-        let pokemonDB = PokemonData(id: pokemon.id, name: pokemon.name, type: pokemon.type, isFavorite: true)
-        repository.addPokemon(pokemon: pokemonDB)
+    func loadPokemons() throws -> [PokemonUi]{
+        return try self.repository.load().map({
+            let pokemonUi: PokemonUi = $0.fromDomainLayerToUiLayer()
+            return pokemonUi
+        })
     }
     
-    @MainActor func deletePokemon(pokemon: PokemonData){
-        repository.deletePokemon(pokemon: pokemon)
+    func insertPokemon(pokemon: PokemonUi) async throws {
+        try await repository.add(pokemon: pokemon.fromUiLayerToDomainLayer())
     }
 
 }

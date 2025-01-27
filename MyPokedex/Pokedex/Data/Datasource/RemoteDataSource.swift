@@ -9,9 +9,9 @@ import SwiftData
 
 struct RemoteDataSource: RemoteDataSourceProtocol {
     let url = Bundle.main.url(forResource: "pokemons", withExtension: "json")!
-    func loadData<T>() throws -> T where T: Codable {
+    func loadData() throws -> [PokemonDomain]{
         let data = try Data(contentsOf: url)
-        return try JSONDecoder().decode(T.self, from: data)
+        return try JSONDecoder().decode([PokemonDomain].self, from: data)
     }
 }
 

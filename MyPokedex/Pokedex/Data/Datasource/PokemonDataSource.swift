@@ -9,11 +9,11 @@ import SwiftData
 
 protocol RemoteDataSourceProtocol {
     var url: URL { get }
-    func loadData<T>() throws -> T where T: Codable
+    func loadData() throws -> [PokemonDomain]
 }
 
 protocol LocalDataSourceProtocol {
     func fetchPokemon() -> [PokemonData]
     func addPokemon(pokemonDB: PokemonData ) throws
-    func deletePokemon(pokemonDB:PokemonData) throws
+    func deletePokemonById(pokemonId:UUID) throws
 }

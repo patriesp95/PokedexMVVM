@@ -8,15 +8,18 @@
 import Foundation
 import SwiftData
 
-protocol PokemonDataRepositoryProtocol {
-    func loadData<T>() throws -> T where T: Codable
-    func fetchPokemon() async -> [PokemonData]
-    func addPokemon(pokemon: PokemonData)
-    func deletePokemon(pokemon: PokemonData)
+protocol PokemonRepositoryProtocol {
+    func load() throws -> [PokemonDomain]
 }
 
-class PokemonDataRepository: @preconcurrency PokemonDataRepositoryProtocol {
-        
+protocol PokemonFavoritedRepositoryProtocol {
+    func fetchFavorites() async throws -> [PokemonDomain]
+    func add(pokemon: PokemonDomain) async throws
+    func delete(pokemonId: UUID) async throws
+}
+
+class PokemonDataRepository: @preconcurrency PokemonRepositoryProtocol, PokemonFavoritedRepositoryProtocol {
+
     private let remoteDataSource: RemoteDataSource
     private let localDataSource: LocalDataSource
     
@@ -27,20 +30,21 @@ class PokemonDataRepository: @preconcurrency PokemonDataRepositoryProtocol {
             self.localDataSource = localDataSource
     }
     
-    func loadData<T>() throws -> T where T : Decodable, T : Encodable {
+    func fetchFavorites() async throws -> [PokemonDomain] {
+        await self.localDataSource.fetchPokemon().map({$0.fromDataLayerToDomainLayer()})
+    }
+    
+    
+    func load() throws -> [PokemonDomain] {
         try self.remoteDataSource.loadData()
     }
     
-    
-    @MainActor func fetchPokemon() -> [PokemonData] {
-        self.localDataSource.fetchPokemon()
+    func add(pokemon: PokemonDomain) async throws {
+        await self.localDataSource.addPokemon(pokemonDB: pokemon.fromDomainLayerToDataLayer())
     }
     
-    @MainActor func addPokemon(pokemon: PokemonData) {
-        self.localDataSource.addPokemon(pokemonDB: pokemon)
+    func delete(pokemonId: UUID) async throws {
+        await self.localDataSource.deletePokemonById(pokemonId: pokemonId)
     }
     
-    @MainActor func deletePokemon(pokemon: PokemonData) {
-        self.localDataSource.deletePokemon(pokemonDB: pokemon)
-    }
 }

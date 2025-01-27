@@ -8,8 +8,8 @@
 import Foundation
 import SwiftData
 
-struct LocalDataSource: @preconcurrency LocalDataSourceProtocol {
-    @MainActor func fetchPokemon() -> [PokemonData] {
+actor LocalDataSource: @preconcurrency LocalDataSourceProtocol {
+    func fetchPokemon() -> [PokemonData] {
         do {
             return try SwiftDataManager.shared.modelContext.fetch(FetchDescriptor<PokemonData>())
         } catch {
@@ -17,7 +17,7 @@ struct LocalDataSource: @preconcurrency LocalDataSourceProtocol {
         }
     }
     
-    @MainActor func addPokemon(pokemonDB: PokemonData){
+    func addPokemon(pokemonDB: PokemonData){
         SwiftDataManager.shared.modelContext.insert(pokemonDB)
         do {
             try SwiftDataManager.shared.modelContext.save()
@@ -26,9 +26,9 @@ struct LocalDataSource: @preconcurrency LocalDataSourceProtocol {
         }
     }
 
-    @MainActor func deletePokemon(pokemonDB:PokemonData) {
+    func deletePokemonById(pokemonId:UUID) {
         do {
-            let pokeId = pokemonDB.id
+            let pokeId = pokemonId
             try SwiftDataManager.shared.modelContext.delete(model: PokemonData.self, where: #Predicate<PokemonData>{
                 $0.id == pokeId
             })

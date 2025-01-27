@@ -9,19 +9,25 @@ import SwiftUI
 import SwiftData
 
 struct PokemonListView: View {
-    @StateObject var vm = PokemonViewModel(repository: .shared)
+    @StateObject var viewmodel = PokemonViewModel(repository: .shared)
     
     var body: some View {
         NavigationView {
             List {
-                ForEach(vm.pokemons) { pokemon in
+                ForEach(viewmodel.pokemons) { pokemon in
                     NavigationLink {
                         PokemonDetailView(pokemon: pokemon)
                     } label: {
                         PokeCell(pokemon: pokemon)
                             .swipeActions(edge: .leading) {
                                 Button {
-                                    vm.insertPokemon(pokemon: pokemon)
+                                    Task {
+                                        do {
+                                            try await viewmodel.insertPokemon(pokemon: pokemon)
+                                        } catch {
+                                            print(error)
+                                        }
+                                    }
                                 } label: {
                                     Label("Favorite", systemImage: "star")
                                 }

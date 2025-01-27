@@ -10,18 +10,20 @@ import SwiftData
 
 
 final class FavoritedPokemonViewModel: ObservableObject {
-    private let repository: PokemonDataRepository
+    private let repository: PokemonFavoritedRepositoryProtocol
     
-    @Published var pokemons: [PokemonData] = []
+    @Published var pokemons: [PokemonUi] = []
     
     init(repository: PokemonDataRepository){
         self.repository = repository
     }
     
-    @MainActor func deletePokemon(pokemon: PokemonData){
-        repository.deletePokemon(pokemon: pokemon)
-        self.pokemons = repository.fetchPokemon()
+    func deletePokemonById(PokemonId: UUID) async throws {
+        try await repository.delete(pokemonId: PokemonId)
+        self.pokemons = try await repository.fetchFavorites().map({
+            let pokemonUi: PokemonUi =  $0.fromDomainLayerToUiLayer()
+            return pokemonUi
+        })
     }
-    
 
 }

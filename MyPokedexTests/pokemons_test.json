@@ -1,0 +1,28 @@
+[
+    {
+        "name": "Bulbasaur",
+        "type":
+        [
+            "Grass",
+            "Poison"
+        ],
+        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"
+    },
+    {
+        "name": "Charmander",
+        "type":
+        [
+            "Fire"
+        ],
+        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png"
+    },
+    {
+        "name": "Squirtle",
+        "type":
+        [
+            "Water"
+        ],
+        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png"
+    }
+]
+

@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct FavoritedPokemonsView: View {
-    @StateObject var vm = FavoritedPokemonViewModel(repository: .shared)
+    @StateObject var viewmodel = FavoritedPokemonViewModel(repository: .shared)
     @Query(sort: \PokemonData.name, animation: .default) var favoritedPokemons: [PokemonData]
     
     var body: some View {
@@ -29,7 +29,13 @@ struct FavoritedPokemonsView: View {
             }
             .swipeActions {
                 Button(role: .destructive){
-                    vm.deletePokemon(pokemon: favPokemon)
+                    Task {
+                        do {
+                            try await viewmodel.deletePokemonById(PokemonId: favPokemon.id)
+                        } catch {
+                            print(error)
+                        }
+                    }
                 } label: {
                     Label("Delete", systemImage: "trash")
                 }

@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct PokemonDetailView: View {
+    struct PokemonDetailView: View {
     
-    let pokemon: Pokemon
+    let pokemon: PokemonUi
     
     var body: some View {
         Form {
@@ -30,5 +30,5 @@ struct PokemonDetailView: View {
 }
 
 #Preview {
-    PokemonDetailView(pokemon: .test)
+    PokemonDetailView(pokemon: PokemonUi.test)
 }
