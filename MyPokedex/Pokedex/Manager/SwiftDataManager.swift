@@ -8,14 +8,13 @@
 import Foundation
 import SwiftData
 
+@MainActor
 final class SwiftDataManager {
     let modelContainer: ModelContainer
     let modelContext: ModelContext
     
-    @MainActor
     static let shared = SwiftDataManager()
     
-    @MainActor
     private init(){
         self.modelContainer = try! ModelContainer(for: PokemonData.self)
         self.modelContext = modelContainer.mainContext

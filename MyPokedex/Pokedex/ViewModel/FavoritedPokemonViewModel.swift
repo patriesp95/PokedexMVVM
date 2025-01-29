@@ -18,10 +18,10 @@ final class FavoritedPokemonViewModel: ObservableObject {
         self.repository = repository
     }
     
-    func deletePokemonById(PokemonId: UUID) async throws {
+    @MainActor func deletePokemonById(PokemonId: UUID) async throws {
         try await repository.delete(pokemonId: PokemonId)
-        self.pokemons = try await repository.fetchFavorites().map({
-            let pokemonUi: PokemonUi =  $0.fromDomainLayerToUiLayer()
+        self.pokemons = try await repository.fetchFavorites().map({ pokemonDomain in
+            var pokemonUi: PokemonUi =  PokemonUi(from: pokemonDomain)
             return pokemonUi
         })
     }

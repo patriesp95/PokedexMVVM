@@ -18,7 +18,7 @@ protocol PokemonFavoritedRepositoryProtocol {
     func delete(pokemonId: UUID) async throws
 }
 
-class PokemonDataRepository: @preconcurrency PokemonRepositoryProtocol, PokemonFavoritedRepositoryProtocol {
+class PokemonDataRepository: PokemonRepositoryProtocol, PokemonFavoritedRepositoryProtocol {
 
     private let remoteDataSource: RemoteDataSource
     private let localDataSource: LocalDataSource
@@ -31,7 +31,9 @@ class PokemonDataRepository: @preconcurrency PokemonRepositoryProtocol, PokemonF
     }
     
     func fetchFavorites() async throws -> [PokemonDomain] {
-        await self.localDataSource.fetchPokemon().map({$0.fromDataLayerToDomainLayer()})
+        try await self.localDataSource.fetchPokemon().map({ pokemonDB in 
+            try PokemonDomain(from: pokemonDB)
+        })
     }
     
     
@@ -40,7 +42,7 @@ class PokemonDataRepository: @preconcurrency PokemonRepositoryProtocol, PokemonF
     }
     
     func add(pokemon: PokemonDomain) async throws {
-        await self.localDataSource.addPokemon(pokemonDB: pokemon.fromDomainLayerToDataLayer())
+        await self.localDataSource.addPokemon(pokemonDB: PokemonData(from: pokemon))
     }
     
     func delete(pokemonId: UUID) async throws {

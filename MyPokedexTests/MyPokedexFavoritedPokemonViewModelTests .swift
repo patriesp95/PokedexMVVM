@@ -31,14 +31,14 @@ final class MyPokedexFavoritedPokemonViewModelTests : XCTestCase {
         try super.tearDownWithError()
     }
     
-    @MainActor func testDeletePokemon() throws{
+    func testDeletePokemon() async throws {
         
         let pokemonDb = PokemonData(id: pokemon.id, name: pokemon.name, type: pokemon.type, isFavorite: true)
-        try sut2.insertPokemon(pokemon: pokemon.fromDomainLayerToUiLayer())
-        try sut.deletePokemonById(PokemonId: pokemonDb.id)
+        try await sut2.insertPokemon(pokemon: PokemonUi(from: pokemon))
+        try await sut.deletePokemonById(PokemonId: pokemonDb.id)
     }
     
-    @MainActor func testFetchPokemonFromDb() throws {
+    func testFetchPokemonFromDb() async throws {
         do {
             let pokemons = try mockRepository.load()
             if pokemons.count > 0 {
@@ -54,9 +54,9 @@ private class MockPokemonRepository: PokemonDataRepository {
     
     override func load() throws -> [PokemonDomain] {
         let myPokemons = [
-            PokemonDomain(name: "Bulbasaur", type: ["Grass", "Poison"], imageURL: URL(filePath: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png")!),
-            PokemonDomain(name: "Charmander", type: ["Fire"], imageURL: URL(filePath: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png")!),
-            PokemonDomain(name: "Squirtle", type: ["Water"], imageURL: URL(filePath: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png")!)
+            PokemonDomain(name: "Bulbasaur", type: ["Grass", "Poison"]),
+            PokemonDomain(name: "Charmander", type: ["Fire"]),
+            PokemonDomain(name: "Squirtle", type: ["Water"])
         ]
         
         guard let file = Bundle(for: type(of: self)).url(forResource: "pokemons_test", withExtension: "json") else { return []}
@@ -69,27 +69,17 @@ private class MockPokemonRepository: PokemonDataRepository {
         
         return try JSONDecoder().decode([PokemonDomain].self, from: data)
     }
-    
-//    func getPokemonFromDatabase() -> [PokemonData] {
-//        let myPokemons = [
-//            PokemonData(id: UUID(), name: "Bulbasaur", type: ["Grass", "Poison"], isFavorite: true),
-//            PokemonData(id: UUID(), name: "Charmander", type: ["Fire"], isFavorite: false),
-//            PokemonData(id: UUID(), name: "Squirtle", type: ["Water"], isFavorite: true)
-//        ]
-//        
-//        return myPokemons
-//    }
-    
-    @MainActor override func add(pokemon: PokemonDomain) {
+
+    override func add(pokemon: PokemonDomain) async throws {
         let myPokemon = PokemonData(id: pokemon.id, name: pokemon.name, type: pokemon.type, isFavorite: true)
         
         
         do {
-            try SwiftDataManager.shared.modelContainer.mainContext.delete(model: PokemonData.self)
-            SwiftDataManager.shared.modelContainer.mainContext.insert(myPokemon)
-            try SwiftDataManager.shared.modelContext.save()
+            try await SwiftDataManager.shared.modelContainer.mainContext.delete(model: PokemonData.self)
+            await SwiftDataManager.shared.modelContainer.mainContext.insert(myPokemon)
+            try await SwiftDataManager.shared.modelContext.save()
             let descriptor = FetchDescriptor<PokemonData>()
-            let pokemons = try SwiftDataManager.shared.modelContainer.mainContext.fetch(descriptor)
+            let pokemons = try await SwiftDataManager.shared.modelContainer.mainContext.fetch(descriptor)
         
             XCTAssertEqual(pokemons.count, 1)
         } catch {
@@ -97,13 +87,13 @@ private class MockPokemonRepository: PokemonDataRepository {
         }
     }
     
-    @MainActor override func delete(pokemonId: UUID) {
+    override func delete(pokemonId: UUID) async throws {
         let pokeId = pokemonId
         do {
-            try SwiftDataManager.shared.modelContext.delete(model: PokemonData.self, where: #Predicate<PokemonData>{
+            try await SwiftDataManager.shared.modelContext.delete(model: PokemonData.self, where: #Predicate<PokemonData>{
                 $0.id == pokeId
             })
-            try SwiftDataManager.shared.modelContext.save()
+            try await SwiftDataManager.shared.modelContext.save()
             let pokemons = [] as! [PokemonData]
             XCTAssertEqual(pokemons.count, 0)
         } catch {

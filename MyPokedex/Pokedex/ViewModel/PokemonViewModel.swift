@@ -23,14 +23,14 @@ final class PokemonViewModel: ObservableObject {
     }
     
     func loadPokemons() throws -> [PokemonUi]{
-        return try self.repository.load().map({
-            let pokemonUi: PokemonUi = $0.fromDomainLayerToUiLayer()
+        return try self.repository.load().map({ pokemonDomain in
+            let pokemonUi: PokemonUi = PokemonUi(from: pokemonDomain)
             return pokemonUi
         })
     }
     
     func insertPokemon(pokemon: PokemonUi) async throws {
-        try await repository.add(pokemon: pokemon.fromUiLayerToDomainLayer())
+        try await repository.add(pokemon: PokemonDomain(with: pokemon))
     }
 
 }

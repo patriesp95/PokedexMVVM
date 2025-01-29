@@ -24,7 +24,7 @@ extension PokemonDomain {
         self.type = data.type
     }
     
-    init(from ui: PokemonUi) throws {
+    init(with ui: PokemonUi) throws {
         self.name = ui.name
         self.type = ui.type
     }
