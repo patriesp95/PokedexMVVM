@@ -10,6 +10,7 @@ import SwiftData
 @testable import MyPokedex
 import SwiftUI
 
+@MainActor
 final class MyPokedexPokemonViewModelTests: XCTestCase {
     
     var sut: PokemonViewModel!
@@ -17,15 +18,15 @@ final class MyPokedexPokemonViewModelTests: XCTestCase {
     
     let pokemon = PokemonDomain(name: "Bulbasaur", type: ["Grass", "Poison"])
     
-    override func setUpWithError() throws {
+    override func setUp() async throws {
         mockRepository = MockPokemonRepository(remoteDataSource: RemoteDataSource(), localDataSource: LocalDataSource())
         sut = PokemonViewModel(repository: mockRepository)
     }
 
-    override func tearDownWithError() throws {
+    override func tearDown() async throws {
         sut = nil
         mockRepository = nil
-        try super.tearDownWithError()
+        try await super.tearDown()
     }
 
     func testLoadData() async throws {
@@ -63,25 +64,25 @@ private class MockPokemonRepository: PokemonDataRepository {
         
         
         do {
-            try await SwiftDataManager.shared.modelContainer.mainContext.delete(model: PokemonData.self)
-            await SwiftDataManager.shared.modelContainer.mainContext.insert(myPokemon)
-            try await SwiftDataManager.shared.modelContext.save()
+            try SwiftDataManager.shared.modelContainer.mainContext.delete(model: PokemonData.self)
+            SwiftDataManager.shared.modelContainer.mainContext.insert(myPokemon)
+            try SwiftDataManager.shared.modelContext.save()
             let descriptor = FetchDescriptor<PokemonData>()
-            let pokemons = try await SwiftDataManager.shared.modelContainer.mainContext.fetch(descriptor)
-        
+            let pokemons = try SwiftDataManager.shared.modelContainer.mainContext.fetch(descriptor)
+
             XCTAssertEqual(pokemons.count, 1)
         } catch {
             XCTFail()
         }
     }
-    
+
     override func delete(pokemonId: UUID) async throws {
-        let pokeId = pokemonId
         do {
-            try await SwiftDataManager.shared.modelContext.delete(model: PokemonData.self, where: #Predicate<PokemonData>{
-                $0.id == pokeId
-            })
-            try await SwiftDataManager.shared.modelContext.save()
+            let items = try SwiftDataManager.shared.modelContext.fetch(FetchDescriptor<PokemonData>())
+            for item in items where item.id == pokemonId {
+                SwiftDataManager.shared.modelContext.delete(item)
+            }
+            try SwiftDataManager.shared.modelContext.save()
             let pokemons = [] as! [PokemonData]
             XCTAssertEqual(pokemons.count, 0)
         } catch {

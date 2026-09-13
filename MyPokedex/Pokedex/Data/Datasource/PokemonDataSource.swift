@@ -12,8 +12,9 @@ protocol RemoteDataSourceProtocol {
     func loadData() throws -> [PokemonDomain]
 }
 
-protocol LocalDataSourceProtocol {
-    func fetchPokemon() -> [PokemonData]
+@MainActor
+protocol LocalDataSourceProtocol: Sendable {
+    func fetchPokemon() throws -> [PokemonDomain]
     func addPokemon(pokemonDB: PokemonData ) throws
     func deletePokemonById(pokemonId:UUID) throws
 }

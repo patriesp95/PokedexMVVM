@@ -8,16 +8,19 @@
 import Foundation
 import SwiftData
 
+@MainActor
 protocol PokemonRepositoryProtocol {
     func load() throws -> [PokemonDomain]
 }
 
+@MainActor
 protocol PokemonFavoritedRepositoryProtocol {
     func fetchFavorites() async throws -> [PokemonDomain]
     func add(pokemon: PokemonDomain) async throws
     func delete(pokemonId: UUID) async throws
 }
 
+@MainActor
 class PokemonDataRepository: PokemonRepositoryProtocol, PokemonFavoritedRepositoryProtocol {
 
     private let remoteDataSource: RemoteDataSource
@@ -31,9 +34,7 @@ class PokemonDataRepository: PokemonRepositoryProtocol, PokemonFavoritedReposito
     }
     
     func fetchFavorites() async throws -> [PokemonDomain] {
-        try await self.localDataSource.fetchPokemon().map({ pokemonDB in 
-            try PokemonDomain(from: pokemonDB)
-        })
+        try self.localDataSource.fetchPokemon()
     }
     
     
@@ -42,11 +43,11 @@ class PokemonDataRepository: PokemonRepositoryProtocol, PokemonFavoritedReposito
     }
     
     func add(pokemon: PokemonDomain) async throws {
-        await self.localDataSource.addPokemon(pokemonDB: PokemonData(from: pokemon))
+        self.localDataSource.addPokemon(pokemonDB: PokemonData(from: pokemon))
     }
     
     func delete(pokemonId: UUID) async throws {
-        await self.localDataSource.deletePokemonById(pokemonId: pokemonId)
+        self.localDataSource.deletePokemonById(pokemonId: pokemonId)
     }
     
 }

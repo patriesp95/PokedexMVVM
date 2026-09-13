@@ -14,7 +14,7 @@ final class PokemonData: Identifiable {
     @Attribute(.unique) var name: String
     var type: [String]
     var isFavorite: Bool
-            
+
     init(id: UUID, name: String, type: [String], isFavorite: Bool) {
         self.id = id
         self.name = name

@@ -8,13 +8,16 @@
 import Foundation
 import SwiftData
 
-actor LocalDataSource: @preconcurrency LocalDataSourceProtocol {
-    func fetchPokemon() -> [PokemonData] {
+@MainActor
+final class LocalDataSource: LocalDataSourceProtocol {
+    func fetchPokemon() throws -> [PokemonDomain] {
+        let items: [PokemonData]
         do {
-            return try SwiftDataManager.shared.modelContext.fetch(FetchDescriptor<PokemonData>())
+            items = try SwiftDataManager.shared.modelContext.fetch(FetchDescriptor<PokemonData>())
         } catch {
             fatalError(error.localizedDescription)
         }
+        return try items.map { try PokemonDomain(from: $0) }
     }
     
     func addPokemon(pokemonDB: PokemonData){
@@ -26,12 +29,12 @@ actor LocalDataSource: @preconcurrency LocalDataSourceProtocol {
         }
     }
 
-    func deletePokemonById(pokemonId:UUID) {
+    func deletePokemonById(pokemonId: UUID) {
         do {
-            let pokeId = pokemonId
-            try SwiftDataManager.shared.modelContext.delete(model: PokemonData.self, where: #Predicate<PokemonData>{
-                $0.id == pokeId
-            })
+            let items = try SwiftDataManager.shared.modelContext.fetch(FetchDescriptor<PokemonData>())
+            for item in items where item.id == pokemonId {
+                SwiftDataManager.shared.modelContext.delete(item)
+            }
             try SwiftDataManager.shared.modelContext.save()
         } catch {
             fatalError(error.localizedDescription)

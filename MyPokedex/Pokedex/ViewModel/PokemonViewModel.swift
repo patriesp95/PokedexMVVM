@@ -8,6 +8,7 @@
 import SwiftUI
 import SwiftData
 
+@MainActor
 final class PokemonViewModel: ObservableObject {
     private let repository: PokemonRepositoryProtocol & PokemonFavoritedRepositoryProtocol
     
