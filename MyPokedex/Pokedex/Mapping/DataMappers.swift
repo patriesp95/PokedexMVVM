@@ -9,12 +9,12 @@ import SwiftUI
 
 extension PokemonData {
     func fromDataLayerToDomainLayer() -> PokemonDomain {
-        return PokemonDomain(name: self.name, type: self.type)
+        return PokemonDomain(name: self.name, type: self.type, imageURL: self.imageURL)
     }
 }
 
 extension PokemonData {
     convenience init(from pokemon: PokemonDomain) {
-        self.init(id: pokemon.id, name: pokemon.name, type: pokemon.type, isFavorite: true)
+        self.init(id: pokemon.id, name: pokemon.name, type: pokemon.type, isFavorite: true, imageURL: pokemon.imageURL)
     }
 }

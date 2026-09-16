@@ -34,12 +34,14 @@ struct PokemonListView: View {
                                 }
                                 .tint(.yellow)
                             }
+                            .listRowSeparator(.hidden)
+                            .listRowBackground(Color.clear)
                     }
                 }
             }
             .listRowSpacing(20)
-            .listStyle(.grouped)
-            .navigationTitle("Pokedex MVVM")
+            .listStyle(.plain)
+            .navigationTitle("Pokédex")
         }
     }
 }

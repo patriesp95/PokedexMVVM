@@ -14,11 +14,13 @@ final class PokemonData: Identifiable {
     @Attribute(.unique) var name: String
     var type: [String]
     var isFavorite: Bool
+    var imageURL: URL?
 
-    init(id: UUID, name: String, type: [String], isFavorite: Bool) {
+    init(id: UUID, name: String, type: [String], isFavorite: Bool, imageURL: URL? = nil) {
         self.id = id
         self.name = name
         self.type = type
         self.isFavorite = isFavorite
+        self.imageURL = imageURL
     }
 }

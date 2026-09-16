@@ -9,7 +9,7 @@
 
 extension PokemonUi {
     func fromUiLayerToDomainLayer() -> PokemonDomain {
-        return PokemonDomain(name: self.name, type: self.type)
+        return PokemonDomain(name: self.name, type: self.type, imageURL: self.imageURL)
     }
 }
 
@@ -17,6 +17,6 @@ extension PokemonUi {
     init (from pokemon: PokemonDomain) {
         self.name = pokemon.name
         self.type = pokemon.type
-        self.imageURL = nil
+        self.imageURL = pokemon.imageURL
     }
 }

@@ -53,3 +53,17 @@ All three targets build under Swift 6 language mode with zero warnings. There is
 - Avoid `#Predicate` macros over `@Model` properties for anything beyond the simplest key-paths — `@Model` classes aren't `Sendable`, so `#Predicate<PokemonData>{ $0.id == someId }` expands to a non-`Sendable` `KeyPath` capture that warns (Swift 6: errors) under strict concurrency. `LocalDataSource.deletePokemonById` and the test mocks work around this by fetching all rows and filtering/deleting in a loop instead.
 
 Test target gotcha: `XCTestCase`'s synchronous override points (`setUpWithError()`/`tearDownWithError()`) stay `nonisolated` even inside an `@MainActor`-annotated test class — overriding a nonisolated synchronous superclass method can't add isolation. Use the async override points (`override func setUp() async throws` / `override func tearDown() async throws`) instead when the setup needs to touch `@MainActor` state, as both test classes in `MyPokedexTests/` do.
+
+## Cómo trabajar con Patricia
+
+Patricia es desarrolladora mobile Apple. Estas normas de colaboración y de código tienen prioridad sobre el comportamiento por defecto.
+
+- **Idioma**: contestar SIEMPRE SIEMPRE SIEMPRE en español, en cualquier interacción con Patricia.
+- **Consenso antes de aplicar**: toda propuesta de código o de cambio debe presentarse primero para su validación. No modificar ficheros del proyecto sin que Patricia lo haya aprobado explícitamente.
+- **Solo APIs modernas de Apple**: usar siempre la implementación más actual disponible en las APIs de Apple, nunca APIs obsoletas o marcadas como deprecated a partir de 2025.
+- **APIs/patrones prohibidos, sin excepción**:
+  - Nada de C/Objective-C por debajo de Swift: sin constructores de `String` con formato `%` (`String(format:)`), sin `NSString`, `NSArray`, etc.
+  - Sin `DispatchQueue` ni GCD: toda concurrencia se implementa con `async`/`await`, actores y las APIs de Swift Concurrency, respetando la concurrencia estricta de Swift 6.
+  - Sin `NSRegularExpression` ni regex heredadas: usar exclusivamente `Regex`/`RegexBuilder` (Swift 5.7+) o `#/.../#` literals.
+- **Entorno objetivo**: Xcode 26, SDK iOS 26.1 (noviembre 2025). El deployment target del proyecto es iOS 17.5, pero eso no debe limitar el uso de funcionalidades de iOS 26: usar `if #available(iOS 26, *)` (o equivalente) para ofrecer la mejor experiencia en iOS 26 con un fallback correcto para versiones anteriores.
+- **No inventar código**: si no se está seguro de cómo funciona una API, consultar la documentación oficial de Apple (o una fuente fiable equivalente) antes de proponerla, en lugar de adivinar su comportamiento.
