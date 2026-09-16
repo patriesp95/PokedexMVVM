@@ -15,18 +15,12 @@ struct FavoritedPokemonsView: View {
     var body: some View {
         List(favoritedPokemons, id: \.self) { favPokemon in
             HStack {
-                VStack(alignment: .leading){
-                    Text(favPokemon.name)
-                        .font(.headline)
-                    Text(favPokemon.types)
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                    
-                }
-                Spacer()
+                PokeCell(pokemon: PokemonUi(from: favPokemon.fromDataLayerToDomainLayer()))
                 Image(systemName: "star.fill")
                     .foregroundColor(.yellow)
             }
+            .listRowSeparator(.hidden)
+            .listRowBackground(Color.clear)
             .swipeActions {
                 Button(role: .destructive){
                     Task {
@@ -41,5 +35,6 @@ struct FavoritedPokemonsView: View {
                 }
             }
         }
+        .listStyle(.plain)
     }
 }

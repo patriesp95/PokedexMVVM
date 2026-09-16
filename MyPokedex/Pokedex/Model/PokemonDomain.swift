@@ -16,8 +16,9 @@ struct PokemonDomain: Codable, Identifiable, Hashable {
     let id = UUID()
     var name: String
     var type: [String]
-    
+    var imageURL: URL? = nil
+
     enum CodingKeys: String, CodingKey {
-        case name, type
+        case name, type, imageURL
     }
 }
