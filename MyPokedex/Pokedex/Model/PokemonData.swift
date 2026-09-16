@@ -15,12 +15,14 @@ final class PokemonData: Identifiable {
     var type: [String]
     var isFavorite: Bool
     var imageURL: URL?
+    var stats: PokemonStats?
 
-    init(id: UUID, name: String, type: [String], isFavorite: Bool, imageURL: URL? = nil) {
+    init(id: UUID, name: String, type: [String], isFavorite: Bool, imageURL: URL? = nil, stats: PokemonStats? = nil) {
         self.id = id
         self.name = name
         self.type = type
         self.isFavorite = isFavorite
         self.imageURL = imageURL
+        self.stats = stats
     }
 }

@@ -11,4 +11,5 @@ struct PokemonUi: Identifiable{
     var name: String
     var type: [String]
     let imageURL: URL?
+    let stats: PokemonStats?
 }
