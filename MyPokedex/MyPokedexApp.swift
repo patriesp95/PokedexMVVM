@@ -17,6 +17,6 @@ struct MyPokedexApp: App {
                     print(URL.documentsDirectory)
                 }
         }
-        .modelContainer(for: PokemonData.self)
+        .modelContainer(SwiftDataManager.shared.modelContainer)
     }
 }
