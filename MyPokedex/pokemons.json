@@ -6,7 +6,8 @@
             "Grass",
             "Poison"
         ],
-        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"
+        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+        "stats": { "hp": 45, "attack": 49, "defense": 49, "speed": 45 }
     },
     {
         "name": "Charmander",
@@ -14,7 +15,8 @@
         [
             "Fire"
         ],
-        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png"
+        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
+        "stats": { "hp": 39, "attack": 52, "defense": 43, "speed": 65 }
     },
     {
         "name": "Squirtle",
@@ -22,7 +24,8 @@
         [
             "Water"
         ],
-        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png"
+        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png",
+        "stats": { "hp": 44, "attack": 48, "defense": 65, "speed": 43 }
     },
     {
         "name": "Pikachu",
@@ -30,7 +33,8 @@
         [
             "Electric"
         ],
-        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"
+        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
+        "stats": { "hp": 35, "attack": 55, "defense": 40, "speed": 90 }
     },
     {
         "name": "Jigglypuff",
@@ -39,7 +43,8 @@
             "Normal",
             "Fairy"
         ],
-        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/39.png"
+        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/39.png",
+        "stats": { "hp": 115, "attack": 45, "defense": 20, "speed": 20 }
     },
     {
         "name": "Eevee",
@@ -47,7 +52,8 @@
         [
             "Normal"
         ],
-        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/133.png"
+        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/133.png",
+        "stats": { "hp": 55, "attack": 55, "defense": 50, "speed": 55 }
     },
     {
         "name": "Chikorita",
@@ -55,7 +61,8 @@
         [
             "Grass"
         ],
-        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/152.png"
+        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/152.png",
+        "stats": { "hp": 45, "attack": 49, "defense": 65, "speed": 45 }
     },
     {
         "name": "Cyndaquil",
@@ -63,7 +70,8 @@
         [
             "Fire"
         ],
-        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/155.png"
+        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/155.png",
+        "stats": { "hp": 39, "attack": 52, "defense": 43, "speed": 65 }
     },
     {
         "name": "Totodile",
@@ -71,7 +79,8 @@
         [
             "Water"
         ],
-        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/158.png"
+        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/158.png",
+        "stats": { "hp": 50, "attack": 65, "defense": 64, "speed": 43 }
     },
     {
         "name": "Treecko",
@@ -79,7 +88,8 @@
         [
             "Grass"
         ],
-        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/252.png"
+        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/252.png",
+        "stats": { "hp": 40, "attack": 45, "defense": 35, "speed": 70 }
     },
     {
         "name": "Torchic",
@@ -87,7 +97,8 @@
         [
             "Fire"
         ],
-        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/255.png"
+        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/255.png",
+        "stats": { "hp": 45, "attack": 60, "defense": 40, "speed": 45 }
     },
     {
         "name": "Mudkip",
@@ -95,7 +106,8 @@
         [
             "Water"
         ],
-        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/258.png"
+        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/258.png",
+        "stats": { "hp": 50, "attack": 70, "defense": 50, "speed": 40 }
     },
     {
         "name": "Piplup",
@@ -103,7 +115,8 @@
         [
             "Water"
         ],
-        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/393.png"
+        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/393.png",
+        "stats": { "hp": 53, "attack": 51, "defense": 53, "speed": 40 }
     },
     {
         "name": "Chimchar",
@@ -111,7 +124,8 @@
         [
             "Fire"
         ],
-        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/390.png"
+        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/390.png",
+        "stats": { "hp": 44, "attack": 58, "defense": 44, "speed": 61 }
     },
     {
         "name": "Turtwig",
@@ -119,7 +133,8 @@
         [
             "Grass"
         ],
-        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/387.png"
+        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/387.png",
+        "stats": { "hp": 55, "attack": 68, "defense": 64, "speed": 31 }
     },
     {
         "name": "Snivy",
@@ -127,7 +142,8 @@
         [
             "Grass"
         ],
-        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/495.png"
+        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/495.png",
+        "stats": { "hp": 45, "attack": 45, "defense": 55, "speed": 63 }
     },
     {
         "name": "Tepig",
@@ -135,7 +151,8 @@
         [
             "Fire"
         ],
-        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/498.png"
+        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/498.png",
+        "stats": { "hp": 65, "attack": 63, "defense": 45, "speed": 45 }
     },
     {
         "name": "Oshawott",
@@ -143,7 +160,8 @@
         [
             "Water"
         ],
-        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/501.png"
+        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/501.png",
+        "stats": { "hp": 55, "attack": 55, "defense": 45, "speed": 45 }
     },
     {
         "name": "Chespin",
@@ -151,7 +169,8 @@
         [
             "Grass"
         ],
-        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/650.png"
+        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/650.png",
+        "stats": { "hp": 56, "attack": 61, "defense": 65, "speed": 38 }
     },
     {
         "name": "Fennekin",
@@ -159,7 +178,8 @@
         [
             "Fire"
         ],
-        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/653.png"
+        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/653.png",
+        "stats": { "hp": 40, "attack": 45, "defense": 40, "speed": 60 }
     },
     {
         "name": "Froakie",
@@ -167,7 +187,7 @@
         [
             "Water"
         ],
-        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/656.png"
+        "imageURL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/656.png",
+        "stats": { "hp": 41, "attack": 56, "defense": 40, "speed": 71 }
     }
 ]
-

@@ -17,8 +17,9 @@ struct PokemonDomain: Codable, Identifiable, Hashable {
     var name: String
     var type: [String]
     var imageURL: URL? = nil
+    var stats: PokemonStats? = nil
 
     enum CodingKeys: String, CodingKey {
-        case name, type, imageURL
+        case name, type, imageURL, stats
     }
 }

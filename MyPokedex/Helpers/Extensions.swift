@@ -30,5 +30,5 @@ extension PokemonUi {
         return number.formatted(.number.precision(.integerLength(3)))
     }
 
-    static let test = PokemonUi(name: "Pikachu", type: ["Electric"], imageURL: URL(string:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png")!)
+    static let test = PokemonUi(name: "Pikachu", type: ["Electric"], imageURL: URL(string:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png")!, stats: PokemonStats(hp: 35, attack: 55, defense: 40, speed: 90))
 }
