@@ -48,3 +48,19 @@ extension String {
         PokemonElementType(rawType: self)
     }
 }
+
+extension View {
+    func pokemonTypeCapsuleStyle(_ type: PokemonElementType?, filled: Bool) -> some View {
+        let tint = type?.badgeColor ?? .gray
+        return self
+            .foregroundStyle(filled ? (type?.badgeTextColor ?? .white) : tint)
+            .background {
+                Capsule().fill(filled ? tint : Color(.secondarySystemBackground))
+            }
+            .overlay {
+                if !filled {
+                    Capsule().strokeBorder(tint, lineWidth: 1.5)
+                }
+            }
+    }
+}
