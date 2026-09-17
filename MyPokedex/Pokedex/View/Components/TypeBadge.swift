@@ -13,10 +13,9 @@ struct TypeBadge: View {
     var body: some View {
         Text(type.uppercased())
             .font(.caption2.weight(.bold))
-            .foregroundStyle(style?.badgeTextColor ?? .white)
             .padding(.horizontal, 10)
             .padding(.vertical, 4)
-            .background(style?.badgeColor ?? .gray, in: Capsule())
+            .pokemonTypeCapsuleStyle(style, filled: true)
     }
 }
 

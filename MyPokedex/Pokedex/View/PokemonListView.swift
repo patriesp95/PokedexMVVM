@@ -14,24 +14,28 @@ struct PokemonListView: View {
     @State private var selectedTypes: Set<PokemonElementType> = []
 
     private var filteredPokemons: [PokemonUi] {
-        guard !selectedTypes.isEmpty else { return viewmodel.pokemons }
-        return viewmodel.pokemons.filter { pokemon in
-            pokemon.type.contains(where: { $0.pokemonElementType.map(selectedTypes.contains) ?? false })
-        }
+        PokemonTypeFilter.apply(viewmodel.pokemons, selectedTypes: selectedTypes)
+    }
+
+    private var availableTypes: [PokemonElementType] {
+        let loadedTypes = Set(viewmodel.pokemons.flatMap(\.type).compactMap(\.pokemonElementType))
+        return PokemonElementType.allCases.filter(loadedTypes.contains)
     }
 
     private func toggle(_ type: PokemonElementType) {
-        if selectedTypes.contains(type) {
-            selectedTypes.remove(type)
-        } else {
-            selectedTypes.insert(type)
-        }
+        selectedTypes = PokemonTypeFilter.toggling(type, in: selectedTypes)
     }
 
     var body: some View {
         NavigationView {
             Group {
-                if filteredPokemons.isEmpty {
+                if viewmodel.pokemons.isEmpty {
+                    ContentUnavailableView(
+                        "No se pudieron cargar los Pokémon",
+                        systemImage: "exclamationmark.triangle",
+                        description: Text("Inténtalo de nuevo más tarde.")
+                    )
+                } else if filteredPokemons.isEmpty {
                     ContentUnavailableView(
                         "Sin resultados",
                         systemImage: "line.3.horizontal.decrease.circle",
@@ -70,7 +74,7 @@ struct PokemonListView: View {
             .safeAreaInset(edge: .top) {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 8) {
-                        ForEach(PokemonElementType.allCases, id: \.self) { type in
+                        ForEach(availableTypes, id: \.self) { type in
                             TypeFilterChip(type: type, isSelected: selectedTypes.contains(type)) {
                                 toggle(type)
                             }

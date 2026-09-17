@@ -16,17 +16,10 @@ struct TypeFilterChip: View {
                 .font(.caption.weight(.bold))
                 .padding(.horizontal, 12)
                 .padding(.vertical, 6)
-                .foregroundStyle(isSelected ? type.badgeTextColor : type.badgeColor)
-                .background {
-                    Capsule().fill(isSelected ? type.badgeColor : Color(.secondarySystemBackground))
-                }
-                .overlay {
-                    if !isSelected {
-                        Capsule().strokeBorder(type.badgeColor, lineWidth: 1.5)
-                    }
-                }
+                .pokemonTypeCapsuleStyle(type, filled: isSelected)
         }
         .buttonStyle(.plain)
+        .accessibilityAddTraits(isSelected ? .isSelected : [])
     }
 }
 
