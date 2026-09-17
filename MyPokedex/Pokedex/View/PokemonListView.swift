@@ -86,6 +86,7 @@ struct PokemonListView: View {
                 .background(.bar)
             }
             .navigationTitle("Pokédex")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
